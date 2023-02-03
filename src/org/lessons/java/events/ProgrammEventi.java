@@ -13,4 +13,12 @@ public class ProgrammEventi {
 		this.events = new ArrayList<Evento>();
 	}
 
+	public void addEvent(Evento event) {
+		this.events.add(event);
+	}
+
+	public int getEventsNumber() {
+		return this.events.size();
+	}
+
 }
