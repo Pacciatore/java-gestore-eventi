@@ -11,6 +11,24 @@ public class Main {
 
 		Evento newEvent = createEvent(s);
 
+		String choice = "";
+
+		do {
+
+			bookTicket(s, newEvent);
+
+			choice = "n";
+
+			// Controllo che ci siano ancora posti disponibili
+			if (newEvent.getBookedSeats() < newEvent.getTotalSeats()) {
+				System.out.println("Prenotare altri biglietti? (S/N)");
+				choice = s.nextLine();
+			}
+
+		} while (choice.toLowerCase().equals("s"));
+
+		System.out.println("Chiusura del programma...");
+
 		s.close();
 
 	}
@@ -28,6 +46,26 @@ public class Main {
 		int eventTotalSeats = Integer.parseInt(s.nextLine());
 
 		return new Evento(eventTitle, eventDate, eventTotalSeats);
+
+	}
+
+	public static void bookTicket(Scanner s, Evento show) {
+
+		System.out.println(
+				"\n-------------------------------------- Prenotazione evento --------------------------------------");
+
+		System.out.println("\nQuante prenotazioni vuoi effettuare?");
+		int nTickets = Integer.parseInt(s.nextLine());
+
+		if (nTickets == 1) {
+			show.prenota();
+			System.out.println("\nHai prenotato " + nTickets + " biglietto.");
+		} else if (nTickets > 1) {
+			show.prenota(nTickets);
+			System.out.println("\nHai prenotato " + nTickets + " biglietti.");
+		}
+
+		System.out.println("Biglietti rimanenti: " + (show.getTotalSeats() - show.getBookedSeats()));
 
 	}
 
