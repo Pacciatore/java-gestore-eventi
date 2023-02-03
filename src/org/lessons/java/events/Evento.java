@@ -1,6 +1,7 @@
 package org.lessons.java.events;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
 
@@ -11,7 +12,7 @@ public class Evento {
 
 	public Evento(String _title, LocalDate _date, int _totalSeats) {
 
-		this.title = _title;
+		setTitle(_title);
 		setDate(_date);
 
 		if (_totalSeats > 0)
@@ -84,6 +85,16 @@ public class Evento {
 			throw new IllegalArgumentException("L'evento è già passato!");
 		else if (bookedSeats <= 0)
 			throw new IllegalArgumentException("Non sono presenti prenotazione da disdire!");
+
+	}
+
+	@Override
+	public String toString() {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String dateFormatted = date.format(dtf);
+
+		return dateFormatted + " - " + title;
 
 	}
 
