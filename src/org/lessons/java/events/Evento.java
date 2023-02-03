@@ -120,7 +120,7 @@ public class Evento {
 		int estimatedBookedSeats = bookedSeats - nTickets;
 
 		if (now.isBefore(getDate()) && estimatedBookedSeats >= 0)
-			bookedSeats--;
+			bookedSeats -= nTickets;
 		else if (now.isAfter(getDate()))
 			throw new IllegalArgumentException("L'evento è già passato!");
 		else if (estimatedBookedSeats < 0)
