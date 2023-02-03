@@ -11,7 +11,13 @@ public class Main {
 
 		Evento newEvent = createEvent(s);
 
-		bookingRequest(s, newEvent);
+		String choice = "";
+
+		System.out.println("Vuoi effettuare prenotazioni? (S/N)");
+		choice = s.nextLine();
+
+		if (choice.toLowerCase().equals("s"))
+			bookingRequest(s, newEvent);
 
 		showInfo(newEvent);
 
