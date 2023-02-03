@@ -80,9 +80,9 @@ public class Evento {
 	// Funzione per prenotazione n biglietti
 	public void prenota(int nTickets) {
 
-		if(nTickets == 0)
+		if (nTickets == 0)
 			throw new IllegalArgumentException("I biglietti da prenotare devono essere maggiori di 0!");
-		
+
 		LocalDate now = LocalDate.now();
 		int estimatedBookedSeats = bookedSeats + nTickets;
 
@@ -96,6 +96,7 @@ public class Evento {
 
 	}
 
+	// Funzione per decremento biglietti prenotati
 	public void disdici() {
 
 		LocalDate now = LocalDate.now();
@@ -106,6 +107,25 @@ public class Evento {
 			throw new IllegalArgumentException("L'evento è già passato!");
 		else if (bookedSeats <= 0)
 			throw new IllegalArgumentException("Non sono presenti prenotazione da disdire!");
+
+	}
+
+	// Funzione per decremento n biglietti prenotati
+	public void disdici(int nTickets) {
+
+		if (nTickets == 0)
+			throw new IllegalArgumentException("I biglietti da disdire devono essere maggiori di 0!");
+
+		LocalDate now = LocalDate.now();
+		int estimatedBookedSeats = bookedSeats - nTickets;
+
+		if (now.isBefore(getDate()) && estimatedBookedSeats >= 0)
+			bookedSeats--;
+		else if (now.isAfter(getDate()))
+			throw new IllegalArgumentException("L'evento è già passato!");
+		else if (estimatedBookedSeats < 0)
+			throw new IllegalArgumentException(
+					"Le prenotazioni da disdire sono superiori alle prenotazioni esistenti!");
 
 	}
 
