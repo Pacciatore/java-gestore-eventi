@@ -21,4 +21,8 @@ public class ProgrammEventi {
 		return this.events.size();
 	}
 
+	public void clearEvents() {
+		this.events.clear();
+	}
+
 }
