@@ -91,11 +91,14 @@ public class Evento {
 	@Override
 	public String toString() {
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String dateFormatted = date.format(dtf);
+		String dateFormatted = date.format(italianDateFormat());
 
 		return dateFormatted + " - " + title;
 
+	}
+
+	public DateTimeFormatter italianDateFormat() {
+		return DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	}
 
 }
