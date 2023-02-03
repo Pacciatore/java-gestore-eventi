@@ -10,18 +10,45 @@ public class Evento {
 	private int bookedSeats;
 
 	public Evento(String _title, LocalDate _date, int _totalSeats) {
+
 		this.title = _title;
-		this.date = _date;
-		this.totalSeats = _totalSeats;
+		setDate(_date);
+
+		if (_totalSeats > 0)
+			this.totalSeats = _totalSeats;
+		else
+			throw new IllegalArgumentException("I posti totali devono essere maggiori di 0!");
+
 		this.bookedSeats = 0;
+
 	}
 
 	public String getTitle() {
 		return this.title;
 	}
 
+	public void setTitle(String _title) {
+
+		if (_title.trim().length() > 0 && !_title.trim().equals(""))
+			this.title = _title;
+		else
+			throw new IllegalArgumentException("Il titolo non può essere vuoto!");
+
+	}
+
 	public LocalDate getDate() {
 		return this.date;
+	}
+
+	public void setDate(LocalDate _date) {
+
+		LocalDate now = LocalDate.now();
+
+		if (_date.isBefore(now))
+			throw new IllegalArgumentException("La data dell'evento non può essere precedente alla data di oggi!");
+		else
+			this.date = _date;
+
 	}
 
 	public int getTotalSeats() {
