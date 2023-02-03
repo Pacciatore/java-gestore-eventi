@@ -1,8 +1,11 @@
 package org.lessons.java.events;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Concerto extends Evento {
 
@@ -43,6 +46,32 @@ public class Concerto extends Evento {
 		else
 			throw new IllegalArgumentException("Il prezzo dev'essere maggiore di 0!");
 
+	}
+
+	// Utils
+	public String getFormattedPrice() {
+
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.setRoundingMode(RoundingMode.HALF_EVEN);
+
+		return df.format(this.price) + "€";
+
+	}
+
+	public String formattedDateHour() {
+
+		DateTimeFormatter hourFormatter = DateTimeFormatter.ISO_TIME;
+
+		String dateFormatted = getDate().format(italianDateFormat());
+		String hourFormatted = getHour().format(hourFormatter);
+
+		return dateFormatted + " " + hourFormatted;
+
+	}
+
+	@Override
+	public String toString() {
+		return formattedDateHour() + " - " + getTitle() + " - " + getFormattedPrice();
 	}
 
 }
