@@ -7,6 +7,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		preBonus();
+
+	}
+
+	public static void preBonus() {
+
 		Scanner s = new Scanner(System.in);
 
 		Evento newEvent = createEvent(s);
@@ -16,9 +22,8 @@ public class Main {
 		System.out.println("Vuoi effettuare prenotazioni? (S/N)");
 		choice = s.nextLine();
 
-		// Richiesta di prenotazioni
-		if (choice.toLowerCase().equals("s"))
-			bookingRequest(s, newEvent);
+		// Richiesta di prenotazioni if (choice.toLowerCase().equals("s"))
+		bookingRequest(s, newEvent);
 		choice = "";
 		System.out.println();
 
@@ -27,9 +32,8 @@ public class Main {
 		System.out.println("Vuoi disdire delle prenotazioni? (S/N)");
 		choice = s.nextLine();
 
-		// Richiesta di cancellazioni
-		if (choice.toLowerCase().equals("s"))
-			cancellingRequest(s, newEvent);
+		// Richiesta di cancellazioni if (choice.toLowerCase().equals("s"))
+		cancellingRequest(s, newEvent);
 		System.out.println();
 
 		showInfo(newEvent);
