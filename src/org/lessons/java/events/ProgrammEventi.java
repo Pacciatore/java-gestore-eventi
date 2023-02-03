@@ -1,5 +1,6 @@
 package org.lessons.java.events;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,18 @@ public class ProgrammEventi {
 
 	public void clearEvents() {
 		this.events.clear();
+	}
+
+	public List<Evento> getEventsByDate(LocalDate date) {
+
+		List<Evento> eventsByDate = new ArrayList<Evento>();
+
+		for (Evento event : this.events) {
+			if (event.getDate().equals(date))
+				eventsByDate.add(event);
+		}
+
+		return eventsByDate;
 	}
 
 }
