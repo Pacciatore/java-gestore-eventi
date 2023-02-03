@@ -62,6 +62,7 @@ public class Evento {
 
 	// Funzioni
 	public void prenota() {
+
 		LocalDate now = LocalDate.now();
 
 		if (now.isBefore(getDate()) && bookedSeats < totalSeats)
@@ -70,6 +71,19 @@ public class Evento {
 			throw new IllegalArgumentException("L'evento è già passato!");
 		else if (bookedSeats >= totalSeats)
 			throw new IllegalArgumentException("I posti per l'evento sono terminati!");
+
+	}
+
+	public void disdici() {
+
+		LocalDate now = LocalDate.now();
+
+		if (now.isBefore(getDate()) && bookedSeats > 0)
+			bookedSeats--;
+		else if (now.isAfter(getDate()))
+			throw new IllegalArgumentException("L'evento è già passato!");
+		else if (bookedSeats <= 0)
+			throw new IllegalArgumentException("Non sono presenti prenotazione da disdire!");
 
 	}
 
