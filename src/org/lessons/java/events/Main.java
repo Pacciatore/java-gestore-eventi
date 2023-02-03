@@ -18,9 +18,18 @@ public class Main {
 
 		if (choice.toLowerCase().equals("s"))
 			bookingRequest(s, newEvent);
+		choice = "";
+		System.out.println();
 
 		showInfo(newEvent);
 
+		System.out.println("Vuoi disdire delle prenotazioni? (S/N)");
+		choice = s.nextLine();
+
+		if (choice.toLowerCase().equals("s"))
+			cancelTicket(s, newEvent);
+
+		System.out.println();
 		System.out.println("Chiusura del programma...");
 
 		s.close();
@@ -80,6 +89,25 @@ public class Main {
 
 		System.out.println("Biglietti rimanenti: " + (show.getTotalSeats() - show.getBookedSeats()));
 
+	}
+
+	public static void cancelTicket(Scanner s, Evento show) {
+
+		System.out.println(
+				"\n-------------------------------------- Cancellazione prenotazione --------------------------------------");
+
+		System.out.println("\nQuante prenotazioni vuoi cancellare?");
+		int nTickets = Integer.parseInt(s.nextLine());
+
+		if (nTickets == 1) {
+			show.disdici();
+			System.out.println("\nHai cancellato " + nTickets + " biglietto.");
+		} else if (nTickets > 1) {
+			show.disdici(nTickets);
+			System.out.println("\nHai cancellato " + nTickets + " biglietti.");
+		}
+
+		System.out.println("Biglietti rimanenti: " + (show.getTotalSeats() - show.getBookedSeats()));
 	}
 
 	public static void showInfo(Evento show) {
