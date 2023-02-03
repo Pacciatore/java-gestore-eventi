@@ -17,4 +17,12 @@ public class Concerto extends Evento {
 
 	}
 
+	public LocalTime getHour() {
+		return this.hour;
+	}
+
+	public BigDecimal getPrice() {
+		return this.price;
+	}
+
 }
