@@ -11,21 +11,7 @@ public class Main {
 
 		Evento newEvent = createEvent(s);
 
-		String choice = "";
-
-		do {
-
-			bookTicket(s, newEvent);
-
-			choice = "n";
-
-			// Controllo che ci siano ancora posti disponibili
-			if (newEvent.getBookedSeats() < newEvent.getTotalSeats()) {
-				System.out.println("Prenotare altri biglietti? (S/N)");
-				choice = s.nextLine();
-			}
-
-		} while (choice.toLowerCase().equals("s"));
+		bookingRequest(s, newEvent);
 
 		System.out.println("Chiusura del programma...");
 
@@ -47,6 +33,25 @@ public class Main {
 
 		return new Evento(eventTitle, eventDate, eventTotalSeats);
 
+	}
+
+	public static void bookingRequest(Scanner s, Evento show) {
+
+		String choice = "";
+
+		do {
+
+			bookTicket(s, show);
+
+			choice = "n";
+
+			// Controllo che ci siano ancora posti disponibili
+			if (show.getBookedSeats() < show.getTotalSeats()) {
+				System.out.println("Prenotare altri biglietti? (S/N)");
+				choice = s.nextLine();
+			}
+
+		} while (choice.toLowerCase().equals("s"));
 	}
 
 	public static void bookTicket(Scanner s, Evento show) {
