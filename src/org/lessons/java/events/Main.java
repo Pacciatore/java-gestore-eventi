@@ -9,6 +9,14 @@ public class Main {
 
 		Scanner s = new Scanner(System.in);
 
+		Evento newEvent = createEvent(s);
+
+		s.close();
+
+	}
+
+	public static Evento createEvent(Scanner s) {
+
 		System.out.print("Inserire titolo dell'evento: ");
 		String eventTitle = s.nextLine();
 
@@ -19,9 +27,7 @@ public class Main {
 		System.out.print("Inserire numero di posti disponibili per l'evento: ");
 		int eventTotalSeats = Integer.parseInt(s.nextLine());
 
-		Evento newEvent = new Evento(eventTitle, eventDate, eventTotalSeats);
-
-		s.close();
+		return new Evento(eventTitle, eventDate, eventTotalSeats);
 
 	}
 
