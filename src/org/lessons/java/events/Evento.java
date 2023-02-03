@@ -62,6 +62,8 @@ public class Evento {
 	}
 
 	// Funzioni
+
+	// Funzione per incremento biglietti prenotati
 	public void prenota() {
 
 		LocalDate now = LocalDate.now();
@@ -72,6 +74,25 @@ public class Evento {
 			throw new IllegalArgumentException("L'evento è già passato!");
 		else if (bookedSeats >= totalSeats)
 			throw new IllegalArgumentException("I posti per l'evento sono terminati!");
+
+	}
+
+	// Funzione per prenotazione n biglietti
+	public void prenota(int nTickets) {
+
+		if(nTickets == 0)
+			throw new IllegalArgumentException("I biglietti da prenotare devono essere maggiori di 0!");
+		
+		LocalDate now = LocalDate.now();
+		int estimatedBookedSeats = bookedSeats + nTickets;
+
+		if (now.isBefore(getDate()) && estimatedBookedSeats <= totalSeats)
+			bookedSeats += nTickets;
+		else if (now.isAfter(getDate()))
+			throw new IllegalArgumentException("L'evento è già passato!");
+		else if (estimatedBookedSeats > totalSeats)
+			throw new IllegalArgumentException(
+					"I posti che si vogliono prenotare sono superiori ai posti disponibili!");
 
 	}
 
