@@ -21,8 +21,28 @@ public class Concerto extends Evento {
 		return this.hour;
 	}
 
+	public void setHour(LocalTime _hour) {
+
+		LocalTime now = LocalTime.now();
+
+		if (_hour.isBefore(now))
+			throw new IllegalArgumentException("Impossibile programmare un concerto indietro nel tempo!");
+		else
+			this.hour = _hour;
+
+	}
+
 	public BigDecimal getPrice() {
 		return this.price;
+	}
+
+	public void setPrice(BigDecimal _price) {
+
+		if (_price.compareTo(BigDecimal.ZERO) > 0)
+			this.price = _price;
+		else
+			throw new IllegalArgumentException("Il prezzo dev'essere maggiore di 0!");
+
 	}
 
 }
