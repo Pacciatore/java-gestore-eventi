@@ -23,6 +23,7 @@ public class Evento {
 
 	}
 
+	// Getters e Setters
 	public String getTitle() {
 		return this.title;
 	}
@@ -57,6 +58,19 @@ public class Evento {
 
 	public int getBookedSeats() {
 		return this.bookedSeats;
+	}
+
+	// Funzioni
+	public void prenota() {
+		LocalDate now = LocalDate.now();
+
+		if (now.isBefore(getDate()) && bookedSeats < totalSeats)
+			bookedSeats++;
+		else if (now.isAfter(getDate()))
+			throw new IllegalArgumentException("L'evento è già passato!");
+		else if (bookedSeats >= totalSeats)
+			throw new IllegalArgumentException("I posti per l'evento sono terminati!");
+
 	}
 
 }
