@@ -13,6 +13,8 @@ public class Main {
 
 		bookingRequest(s, newEvent);
 
+		showInfo(newEvent);
+
 		System.out.println("Chiusura del programma...");
 
 		s.close();
@@ -71,6 +73,22 @@ public class Main {
 		}
 
 		System.out.println("Biglietti rimanenti: " + (show.getTotalSeats() - show.getBookedSeats()));
+
+	}
+
+	public static void showInfo(Evento show) {
+
+		System.out.println("--------------------------------------");
+
+		System.out.println(show.toString());
+
+		System.out.println("Posti totali: " + show.getTotalSeats());
+
+		System.out.println("Posti prenotati: " + show.getBookedSeats());
+
+		System.out.println("Posti disponibili: " + (show.getTotalSeats() - show.getBookedSeats()));
+
+		System.out.println("--------------------------------------");
 
 	}
 
